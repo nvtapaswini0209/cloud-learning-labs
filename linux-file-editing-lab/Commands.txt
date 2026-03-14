@@ -1,0 +1,38 @@
+# SSH Connection
+ssh -i labsuser.pem ec2-user@<public-ip>
+
+# Start Vim tutorial
+vimtutor
+
+# Install Vim (if not installed)
+sudo yum install vim
+
+# Create file using Vim
+vim helloworld
+
+# Enter insert mode
+i
+
+# Save and quit Vim
+:wq
+
+# Quit without saving
+:q!
+
+# Delete line in Vim
+dd
+
+# Undo command
+u
+
+# Save file without exiting
+:w
+
+# Create file using Nano
+nano cloudworld
+
+# Save file in Nano
+CTRL + O
+
+# Exit Nano
+CTRL + X

@@ -1,0 +1,35 @@
+# Check current directory
+pwd
+
+# Create backup alias
+alias backup='tar -cvzf '
+
+# Backup company folder
+backup backup_companyA.tar.gz CompanyA
+
+# Verify backup archive
+ls
+
+# Navigate to bin folder
+cd /home/ec2-user/CompanyA/bin
+
+# Run script from current directory
+./hello.sh
+
+# Move to parent directory
+cd ..
+
+# Run script using relative path
+./bin/hello.sh
+
+# Attempt running script directly
+hello.sh
+
+# Display PATH variable
+echo $PATH
+
+# Add new directory to PATH
+PATH=$PATH:/home/ec2-user/CompanyA/bin
+
+# Run script again
+hello.sh

@@ -1,0 +1,108 @@
+# Check current directory
+pwd
+
+# Create users
+sudo useradd arosalez
+sudo passwd arosalez
+
+sudo useradd eowusu
+sudo passwd eowusu
+
+sudo useradd jdoe
+sudo passwd jdoe
+
+sudo useradd ljuan
+sudo passwd ljuan
+
+sudo useradd mmajor
+sudo passwd mmajor
+
+sudo useradd mjackson
+sudo passwd mjackson
+
+sudo useradd nwolf
+sudo passwd nwolf
+
+sudo useradd psantos
+sudo passwd psantos
+
+sudo useradd smartinez
+sudo passwd smartinez
+
+sudo useradd ssarkar
+sudo passwd ssarkar
+
+
+# Verify created users
+sudo cat /etc/passwd | cut -d: -f1
+
+
+# Create groups
+sudo groupadd Sales
+sudo groupadd HR
+sudo groupadd Finance
+sudo groupadd Shipping
+sudo groupadd Managers
+sudo groupadd CEO
+
+
+# Verify groups
+cat /etc/group
+
+
+# Add users to groups
+sudo usermod -a -G Sales arosalez
+sudo usermod -a -G Sales nwolf
+
+sudo usermod -a -G HR ljuan
+sudo usermod -a -G HR smartinez
+
+sudo usermod -a -G Finance mmajor
+sudo usermod -a -G Finance ssarkar
+
+sudo usermod -a -G Shipping eowusu
+sudo usermod -a -G Shipping jdoe
+sudo usermod -a -G Shipping psantos
+
+sudo usermod -a -G Managers arosalez
+sudo usermod -a -G Managers ljuan
+sudo usermod -a -G Managers mmajor
+
+sudo usermod -a -G CEO mjackson
+
+
+# Add ec2-user to all groups
+sudo usermod -a -G Sales ec2-user
+sudo usermod -a -G HR ec2-user
+sudo usermod -a -G Finance ec2-user
+sudo usermod -a -G Shipping ec2-user
+sudo usermod -a -G Managers ec2-user
+sudo usermod -a -G CEO ec2-user
+
+
+# Verify group membership
+sudo cat /etc/group
+
+
+# Switch to another user
+su arosalez
+
+
+# Check current directory
+pwd
+
+
+# Try creating a file
+touch myFile.txt
+
+
+# Try sudo command
+sudo touch myFile.txt
+
+
+# Exit back to ec2-user
+exit
+
+
+# View security logs
+sudo cat /var/log/secure

@@ -1,0 +1,25 @@
+# EC2 Monitoring Commands
+
+## Check Apache HTTP Service
+
+sudo systemctl status httpd.service
+
+## Start Apache Service
+
+sudo systemctl start httpd.service
+
+## Stop Apache Service
+
+sudo systemctl stop httpd.service
+
+## Monitor Running Processes
+
+top
+
+Press Q to exit.
+
+## Simulate CPU Workload
+
+./stress.sh & top
+
+This script generates CPU load to observe system performance and CloudWatch monitoring.

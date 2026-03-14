@@ -1,0 +1,19 @@
+# Commands Used
+
+## SSH Connection
+ssh -i labsuser.pem ec2-user@<public-ip>
+
+## Process Log
+sudo ps -aux | grep -v root | sudo tee SharedFolders/processes.csv
+
+## Validate Output
+cat SharedFolders/processes.csv
+
+## System Monitoring
+top
+
+## Create Cron Job
+sudo crontab -e
+
+## Validate Cron
+sudo crontab -l
