@@ -1,0 +1,58 @@
+# Connect to EC2
+ssh -i labsuser.pem ec2-user@<public-ip>
+
+# Verify directory
+pwd
+
+# Navigate to working directory
+cd companyA
+
+# Check for updates
+sudo yum -y check-update
+
+# Apply security updates
+sudo yum update --security
+
+# Upgrade packages
+sudo yum -y upgrade
+
+# Install Apache httpd
+sudo yum install httpd -y
+
+# View package history
+sudo yum history list
+
+# View transaction details
+sudo yum history info 2
+
+# Roll back transaction
+sudo yum -y history undo 2
+
+# Check Python
+python3 --version
+
+# Check pip
+pip3 --version
+
+# Download AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+# Unzip installer
+unzip awscliv2.zip
+
+# Install AWS CLI
+sudo ./aws/install
+
+# Verify AWS CLI
+aws help
+
+# Configure AWS CLI
+aws configure
+
+# Open credentials file
+sudo nano ~/.aws/credentials
+
+# Describe EC2 instance
+aws ec2 describe-instance-attribute \
+--instance-id i-xxxxxxxx \
+--attribute instanceType

@@ -1,0 +1,22 @@
+cd companyA
+pwd
+
+sudo chown -R mjackson:Personnel /home/ec2-user/companyA
+sudo chown -R ljuan:HR HR
+sudo chown -R mmajor:Finance HR/Finance
+
+ls -laR
+
+sudo vi symbolic_mode_file
+sudo chmod g+w symbolic_mode_file
+
+sudo vi absolute_mode_file
+sudo chmod 764 absolute_mode_file
+
+ls -l
+
+sudo chown -R eowusu:Shipping Shipping
+sudo chown -R nwolf:Sales Sales
+
+ls -laR Shipping
+ls -laR Sales

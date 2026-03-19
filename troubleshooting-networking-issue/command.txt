@@ -1,0 +1,16 @@
+# Connect to EC2
+cd ~/Downloads
+chmod 400 labsuser.pem
+ssh -i labsuser.pem ec2-user@<PUBLIC-IP>
+
+# Check Apache status
+sudo systemctl status httpd
+
+# Start Apache
+sudo systemctl start httpd
+
+# Verify again
+sudo systemctl status httpd
+
+# Test internet connectivity
+ping www.amazon.com

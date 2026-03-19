@@ -1,0 +1,20 @@
+# Connect to Bastion
+EC2 Instance Connect
+
+# SSH to private instance
+ssh ec2-user@10.0.2.X
+
+# Accept connection
+yes
+
+# Enter password
+lab-password
+
+# Test internet (important)
+curl https://amazon.com
+
+# Update packages
+sudo yum update -y
+
+# Ping test (may fail due to ICMP restrictions)
+ping -c 3 amazon.com

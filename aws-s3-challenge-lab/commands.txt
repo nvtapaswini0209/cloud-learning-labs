@@ -1,0 +1,29 @@
+
+---
+
+# 📄 3. commands.txt (Important for Interview)
+
+```txt
+# Configure AWS CLI
+aws configure
+
+# Create bucket
+aws s3 mb s3://tapaswini-s3-lab-12345 --region us-west-2
+
+# Create file
+echo "Hello from S3 Lab" > index.html
+
+# Upload file
+aws s3 cp index.html s3://tapaswini-s3-lab-12345
+
+# Make file public
+aws s3api put-object-acl \
+--bucket tapaswini-s3-lab-12345 \
+--key index.html \
+--acl public-read
+
+# Alternative (upload + public)
+aws s3 cp index.html s3://tapaswini-s3-lab-12345 --acl public-read
+
+# List bucket contents
+aws s3 ls s3://tapaswini-s3-lab-12345

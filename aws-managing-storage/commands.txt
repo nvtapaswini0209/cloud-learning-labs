@@ -1,0 +1,57 @@
+# Get Volume ID
+aws ec2 describe-instances \
+--filter 'Name=tag:Name,Values=Processor' \
+--query 'Reservations[0].Instances[0].BlockDeviceMappings[0].Ebs.VolumeId'
+
+# Get Instance ID
+aws ec2 describe-instances \
+--filters 'Name=tag:Name,Values=Processor' \
+--query 'Reservations[0].Instances[0].InstanceId'
+
+# Stop Instance
+aws ec2 stop-instances --instance-ids INSTANCE-ID
+
+# Wait until stopped
+aws ec2 wait instance-stopped --instance-ids INSTANCE-ID
+
+# Create Snapshot
+aws ec2 create-snapshot --volume-id VOLUME-ID
+
+# Wait snapshot
+aws ec2 wait snapshot-completed --snapshot-id SNAPSHOT-ID
+
+# Start Instance
+aws ec2 start-instances --instance-ids INSTANCE-ID
+
+# Cron job (auto snapshot)
+echo "* * * * * aws ec2 create-snapshot --volume-id VOLUME-ID >> /tmp/cronlog" > cronjob
+crontab cronjob
+
+# Remove cron
+crontab -r
+
+# Run Python script
+python3.8 snapshotter_v2.py
+
+# Enable versioning
+aws s3api put-bucket-versioning \
+--bucket YOUR-BUCKET \
+--versioning-configuration Status=Enabled
+
+# Sync files
+aws s3 sync files s3://YOUR-BUCKET/files/
+
+# Sync with delete
+aws s3 sync files s3://YOUR-BUCKET/files/ --delete
+
+# List versions
+aws s3api list-object-versions \
+--bucket YOUR-BUCKET \
+--prefix files/file1.txt
+
+# Recover file
+aws s3api get-object \
+--bucket YOUR-BUCKET \
+--key files/file1.txt \
+--version-id VERSION-ID \
+files/file1.txt

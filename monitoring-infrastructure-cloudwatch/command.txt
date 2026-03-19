@@ -1,0 +1,76 @@
+Run Command Document:
+AWS-ConfigureAWSPackage
+
+Action:
+Install
+
+Package Name:
+AmazonCloudWatchAgent
+
+Version:
+latest
+
+---
+
+CloudWatch Agent Configuration Source
+
+Parameter Store Name:
+Monitor-Web-Server
+
+---
+
+Run Command Document:
+AmazonCloudWatch-ManageAgent
+
+Action:
+configure
+
+Mode:
+ec2
+
+Configuration Source:
+ssm
+
+Configuration Location:
+Monitor-Web-Server
+
+Restart Agent:
+yes
+
+---
+
+Metric Filter Pattern
+
+[ip, id, user, timestamp, request, status_code=404, size]
+
+---
+
+Metric Details
+
+Filter Name:
+404Errors
+
+Metric Namespace:
+LogMetrics
+
+Metric Name:
+404Errors
+
+Metric Value:
+1
+
+---
+
+Alarm Configuration
+
+Metric:
+404Errors
+
+Period:
+1 minute
+
+Condition:
+>= 5
+
+Alarm Name:
+404 Errors

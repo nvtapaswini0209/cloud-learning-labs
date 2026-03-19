@@ -1,0 +1,57 @@
+mkdir bash-lab
+
+cd bash-lab
+
+nano create_files.sh
+
+chmod +x create_files.sh
+
+./create_files.sh
+
+ls -l
+
+
+SSH command:
+
+
+ssh -i labsuser.pem ec2-user@PUBLIC-IP
+
+
+---
+
+# 4️⃣ YouTube Title
+
+Use something **recruiter friendly**.
+
+
+AWS Linux Bash Automation Lab | EC2 Shell Scripting Project | Create Files Automatically
+
+
+Better option:
+
+
+AWS EC2 Linux Bash Scripting Lab | Automation Script Project for DevOps Beginners
+
+
+---
+
+# 5️⃣ YouTube Description
+
+
+In this AWS hands-on lab, I connected to an Amazon EC2 Linux instance using SSH and created a Bash automation script.
+
+The script automatically generates batches of files while detecting the last created file number and continuing sequentially.
+
+This lab demonstrates practical Linux and cloud automation skills used in DevOps and Cloud Engineering roles.
+
+Technologies used:
+AWS EC2
+Linux (Amazon Linux)
+SSH
+Bash scripting
+
+Project Repository:
+(GitHub link)
+
+Author:
+Venkata Tapaswini Nallana

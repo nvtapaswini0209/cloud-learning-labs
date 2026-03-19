@@ -1,0 +1,44 @@
+mkdir ctraillogs
+cd ctraillogs
+
+aws s3 ls
+
+aws s3 cp s3://monitoring####/ . --recursive
+
+gunzip *.gz
+
+cat filename.json | python -m json.tool
+
+for i in $(ls); do echo $i && cat $i | python -m json.tool | grep sourceIPAddress ; done
+
+for i in $(ls); do echo $i && cat $i | python -m json.tool | grep eventName ; done
+
+aws cloudtrail lookup-events --lookup-attributes AttributeKey=EventName,AttributeValue=ConsoleLogin
+
+aws cloudtrail lookup-events --lookup-attributes AttributeKey=ResourceType,AttributeValue=AWS::EC2::SecurityGroup --output text
+
+region=$(curl http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | cut -d '"' -f4)
+
+sgId=$(aws ec2 describe-instances --filters "Name=tag:Name,Values='Cafe Web Server'" --query 'Reservations[*].Instances[*].SecurityGroups[*].[GroupId]' --region $region --output text)
+
+echo $sgId
+
+aws cloudtrail lookup-events --lookup-attributes AttributeKey=ResourceType,AttributeValue=AWS::EC2::SecurityGroup --region $region --output text | grep $sgId
+
+sudo aureport --auth
+
+who
+
+sudo userdel -r chaos-user
+
+sudo kill -9 PID
+
+sudo userdel -r chaos-user
+
+sudo vi /etc/ssh/sshd_config
+
+sudo service sshd restart
+
+cd /var/www/html/cafe/images/
+
+sudo mv Coffee-and-Pastries.backup Coffee-and-Pastries.jpg

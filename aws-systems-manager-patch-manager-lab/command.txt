@@ -1,0 +1,25 @@
+# No CLI commands used in this lab
+# All actions performed via AWS Console
+
+Services used:
+- AWS Systems Manager
+- Patch Manager
+- EC2
+- Run Command
+
+Key Configurations:
+
+Linux:
+Tag Key: Patch Group
+Value: LinuxProd
+
+Windows:
+Tag Key: Patch Group
+Value: WindowsProd
+
+Patch Baseline:
+Name: WindowsServerSecurityUpdates
+OS: Windows
+Rules:
+- Critical Security Updates (3 days)
+- Important Security Updates (3 days)

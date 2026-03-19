@@ -1,0 +1,38 @@
+AWS Console Steps
+
+1. Navigate to EC2 Dashboard
+2. Click Launch Instance
+3. Select Amazon Linux 2 AMI
+4. Choose instance type t3.micro
+5. Select Lab VPC
+6. Choose Public Subnet
+7. Enable Auto Assign Public IP
+8. Add tag
+   Name : test-instance
+9. Select security group
+   Linux Instance SG
+10. Launch instance using key pair vockey
+
+Testing Dynamic IP
+
+1. Select EC2 instance
+2. Open Networking tab
+3. Note Public IPv4 address
+4. Stop instance
+5. Start instance
+6. Observe that Public IP changed
+
+Elastic IP Solution
+
+1. Navigate to EC2 → Elastic IPs
+2. Click Allocate Elastic IP
+3. Select the Elastic IP
+4. Click Actions → Associate Elastic IP
+5. Select instance test-instance
+6. Associate
+
+Verification
+
+1. Stop instance
+2. Start instance
+3. Confirm public IP remains the same

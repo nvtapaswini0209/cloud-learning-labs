@@ -1,0 +1,21 @@
+pwd
+hostname | tee file1.txt
+ls
+
+cat > test.csv
+sort test.csv
+grep Paris test.csv
+
+cat > cities.csv
+cut -d ',' -f 1 cities.csv
+
+sed 's/,/./' cities.csv
+sed 's/,/./' test.csv
+
+| Command | Real-world use                     |
+| ------- | ---------------------------------- |
+| tee     | Logging output during scripts      |
+| sort    | Organizing logs and datasets       |
+| cut     | Extracting fields from CSV or logs |
+| sed     | Automating configuration edits     |
+| pipe    | Building command pipelines         |

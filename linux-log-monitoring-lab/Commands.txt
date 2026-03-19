@@ -1,0 +1,16 @@
+# AWS EC2 Linux Log Monitoring Lab - Commands
+
+# Verify current working directory
+pwd
+
+# Navigate to the companyA directory
+cd companyA
+
+# View secure authentication logs
+sudo less /tmp/log/secure
+
+# Exit the log viewer
+q
+
+# Check last login activity of all users
+sudo lastlog

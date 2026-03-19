@@ -1,0 +1,11 @@
+# Change permission of key
+chmod 400 labsuser.pem
+
+# SSH into EC2
+ssh -i labsuser.pem ec2-user@<public-ip>
+
+# Test internet connectivity
+ping google.com
+
+# Stop ping
+CTRL + C

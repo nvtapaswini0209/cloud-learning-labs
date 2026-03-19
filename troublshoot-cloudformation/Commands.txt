@@ -1,0 +1,45 @@
+aws configure
+
+less template1.yaml
+
+aws cloudformation create-stack \
+--stack-name myStack \
+--template-body file://template1.yaml \
+--capabilities CAPABILITY_NAMED_IAM \
+--parameters ParameterKey=KeyName,ParameterValue=vockey
+
+watch -n 5 -d \
+aws cloudformation describe-stack-resources \
+--stack-name myStack \
+--query 'StackResources[*].[ResourceType,ResourceStatus]' \
+--output table
+
+aws cloudformation describe-stacks --stack-name myStack
+
+aws cloudformation describe-stack-events \
+--stack-name myStack \
+--query "StackEvents[?ResourceStatus == 'CREATE_FAILED']"
+
+aws cloudformation delete-stack --stack-name myStack
+
+aws ec2 describe-instances \
+--filters "Name=tag:Name,Values='Web Server'" \
+--query 'Reservations[].Instances[].[State.Name,PublicIpAddress]'
+
+tail -50 /var/log/cloud-init-output.log
+
+sudo cat /var/lib/cloud/instance/scripts/part-001
+
+vim template1.yaml
+
+aws cloudformation detect-stack-drift --stack-name myStack
+
+aws cloudformation describe-stack-resource-drifts --stack-name myStack
+
+touch myfile
+
+aws s3 cp myfile s3://bucket-name/
+
+aws cloudformation delete-stack \
+--stack-name myStack \
+--retain-resources MyBucket

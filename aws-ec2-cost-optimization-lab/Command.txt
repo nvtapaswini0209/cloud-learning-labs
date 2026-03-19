@@ -1,0 +1,38 @@
+# Connect to EC2
+ssh -i labsuser.pem ec2-user@<CafeInstance-IP>
+
+# Stop MariaDB
+sudo systemctl stop mariadb
+
+# Remove MariaDB
+sudo yum -y remove mariadb-server
+
+# Connect to CLI Host
+ssh -i labsuser.pem ec2-user@<CLI-HOST-IP>
+
+# Find region
+curl http://169.254.169.254/latest/dynamic/instance-identity/document | grep region
+
+# Configure AWS CLI
+aws configure
+
+# Get instance ID
+aws ec2 describe-instances \
+--filters "Name=tag:Name,Values=CafeInstance" \
+--query "Reservations[*].Instances[*].InstanceId"
+
+# Stop instance
+aws ec2 stop-instances --instance-ids <INSTANCE-ID>
+
+# Resize instance
+aws ec2 modify-instance-attribute \
+--instance-id <INSTANCE-ID> \
+--instance-type "{\"Value\": \"t3.micro\"}"
+
+# Start instance
+aws ec2 start-instances --instance-ids <INSTANCE-ID>
+
+# Verify instance
+aws ec2 describe-instances \
+--instance-ids <INSTANCE-ID> \
+--query "Reservations[*].Instances[*].[InstanceType,PublicDnsName,PublicIpAddress,State.Name]"

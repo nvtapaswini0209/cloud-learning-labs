@@ -1,0 +1,33 @@
+# Check disk
+df -h
+
+# Create filesystem
+sudo mkfs -t ext3 /dev/sdb
+
+# Create directory
+sudo mkdir /mnt/data-store
+
+# Mount volume
+sudo mount /dev/sdb /mnt/data-store
+
+# Auto-mount
+echo "/dev/sdb /mnt/data-store ext3 defaults,noatime 1 2" | sudo tee -a /etc/fstab
+
+# Verify
+df -h
+
+# Create file
+sudo sh -c "echo Hello AWS EBS > /mnt/data-store/file.txt"
+
+# Read file
+cat /mnt/data-store/file.txt
+
+# Delete file
+sudo rm /mnt/data-store/file.txt
+
+# Restore mount
+sudo mkdir /mnt/data-store2
+sudo mount /dev/sdc /mnt/data-store2
+
+# Verify restored file
+ls /mnt/data-store2/file.txt

@@ -1,0 +1,19 @@
+# AWS Console Navigation Commands (Manual)
+
+Search: Inspector
+Search: Lambda
+
+# File Edited:
+requirements.txt
+
+# Old Version:
+requests==2.20.0
+
+# Updated Version:
+requests
+
+# Deployment:
+Click Deploy button
+
+# Verification:
+Inspector → Findings → Filter → Closed

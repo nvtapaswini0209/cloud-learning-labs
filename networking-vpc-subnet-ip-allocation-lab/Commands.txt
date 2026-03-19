@@ -1,0 +1,36 @@
+Search VPC in AWS console
+
+Open VPC Dashboard
+
+Click Create VPC
+
+Select VPC and more
+
+Enter VPC name
+First VPC
+
+Set IPv4 CIDR
+192.168.0.0/18
+
+Set Availability Zones
+1
+
+Set Public Subnets
+1
+
+Subnet CIDR
+192.168.1.0/26
+
+Set Private Subnets
+0
+
+NAT Gateway
+None
+
+Click Create VPC
+
+Verify VPC
+
+Open Your VPCs
+
+Verify subnet in Subnets section

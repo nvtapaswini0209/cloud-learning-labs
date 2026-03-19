@@ -1,0 +1,35 @@
+# Find instances by tag
+aws ec2 describe-instances --filter "Name=tag:Project,Values=ERPSystem"
+
+# Show instance IDs
+aws ec2 describe-instances \
+--filter "Name=tag:Project,Values=ERPSystem" \
+--query 'Reservations[*].Instances[*].InstanceId'
+
+# Show instance ID and AZ
+aws ec2 describe-instances \
+--filter "Name=tag:Project,Values=ERPSystem" \
+--query 'Reservations[*].Instances[*].{ID:InstanceId,AZ:Placement.AvailabilityZone}'
+
+# Show tags
+aws ec2 describe-instances \
+--filter "Name=tag:Project,Values=ERPSystem" \
+--query 'Reservations[*].Instances[*].{ID:InstanceId,AZ:Placement.AvailabilityZone,Project:Tags[?Key==`Project`] | [0].Value,Environment:Tags[?Key==`Environment`] | [0].Value,Version:Tags[?Key==`Version`] | [0].Value}'
+
+# Filter development instances
+aws ec2 describe-instances \
+--filter "Name=tag:Project,Values=ERPSystem" \
+"Name=tag:Environment,Values=development" \
+--query 'Reservations[*].Instances[*].{ID:InstanceId,AZ:Placement.AvailabilityZone,Project:Tags[?Key==`Project`] | [0].Value,Environment:Tags[?Key==`Environment`] | [0].Value,Version:Tags[?Key==`Version`] | [0].Value}'
+
+# Run tag update script
+./change-resource-tags.sh
+
+# Stop development instances
+./stopinator.php -t"Project=ERPSystem;Environment=development"
+
+# Start instances
+./stopinator.php -t"Project=ERPSystem;Environment=development" -s
+
+# Terminate non-compliant instances
+./terminate-instances.php -region us-west-2 -subnetid subnet-xxxx

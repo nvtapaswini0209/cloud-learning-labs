@@ -1,0 +1,24 @@
+# Connect to EC2
+ssh -i labsuser.pem ec2-user@<public-ip>
+
+# Ping
+ping 8.8.8.8 -c 5
+
+# Install traceroute
+sudo yum install traceroute -y
+
+# Traceroute
+traceroute 8.8.8.8
+
+# Netstat
+netstat -tp
+netstat -tlp
+
+# Install telnet
+sudo yum install telnet -y
+
+# Telnet
+telnet www.google.com 80
+
+# Curl
+curl -vLo /dev/null https://aws.com

@@ -1,0 +1,61 @@
+
+---
+
+# 📄 2. commands.txt
+
+```txt
+# Configure AWS CLI
+aws configure
+
+# Create S3 bucket
+aws s3api create-bucket --bucket flowlog123456 --region us-west-2 --create-bucket-configuration LocationConstraint=us-west-2
+
+# Get VPC ID
+aws ec2 describe-vpcs --filters "Name=tag:Name,Values=VPC1"
+
+# Create Flow Logs
+aws ec2 create-flow-logs --resource-type VPC --resource-ids <vpc-id> --traffic-type ALL --log-destination-type s3 --log-destination arn:aws:s3:::flowlog123456
+
+# Check Flow Logs
+aws ec2 describe-flow-logs
+
+# Check instances
+aws ec2 describe-instances --filter "Name=ip-address,Values='<WebServerIP>'"
+
+# Install nmap
+sudo yum install -y nmap
+
+# Scan ports
+nmap <WebServerIP>
+
+# Check security group
+aws ec2 describe-security-groups --group-ids <sg-id>
+
+# Check route table
+aws ec2 describe-route-tables --filters "Name=association.subnet-id,Values=<subnet-id>"
+
+# Create route (fix issue)
+aws ec2 create-route --route-table-id <rtb-id> --destination-cidr-block 0.0.0.0/0 --gateway-id <igw-id>
+
+# Check NACL
+aws ec2 describe-network-acls --filters "Name=association.subnet-id,Values=<subnet-id>"
+
+# Delete NACL rule (fix SSH)
+aws ec2 delete-network-acl-entry --network-acl-id <acl-id> --rule-number 40 --ingress
+
+# Download logs
+aws s3 cp s3://flowlog123456/ . --recursive
+
+# Navigate folders
+cd AWSLogs/*/vpcflowlogs/*/*/*/*
+
+# Extract logs
+gunzip *.gz
+
+# Analyze logs
+grep -r REJECT .
+grep -r 22 . | grep REJECT
+grep -r REJECT . | wc -l
+
+# Convert timestamp
+date -d @<timestamp>

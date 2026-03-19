@@ -1,0 +1,10 @@
+pwd
+ls -R CompanyA
+tar -csvpzf backup.CompanyA.tar.gz CompanyA
+ls
+cd /home/ec2-user/CompanyA
+touch SharedFolders/backups.csv
+echo "25 Aug 2021, 16:59, backup.CompanyA.tar.gz" | sudo tee SharedFolders/backups.csv
+cat SharedFolders/backups.csv
+mv ../backup.CompanyA.tar.gz IA/
+ls . IA

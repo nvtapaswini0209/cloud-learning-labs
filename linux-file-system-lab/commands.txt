@@ -1,0 +1,10 @@
+pwd - This command shows the current working directory.
+mkdir -mkdir creates directories.
+cd - change directory
+touch - Creates an empty file
+ls - list
+ls -laR - This command recursively lists all directories and files.
+cp -r - cp -r copies directories recursively.
+rm - Remove files
+rmdir - Remove directory
+mv - moves directories or files

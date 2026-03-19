@@ -1,0 +1,97 @@
+# ==============================
+# AWS S3 + SNS Lab Commands
+# ==============================
+
+# Step 1: Configure AWS CLI
+aws configure
+
+# Enter:
+# AWS Access Key ID
+# AWS Secret Access Key
+# Region: us-west-2
+# Output: json
+
+
+# Step 2: Create S3 Bucket
+aws s3 mb s3://cafe-tapaswini2026 --region us-west-2
+
+
+# Step 3: Upload Initial Images
+aws s3 sync ~/initial-images/ s3://cafe-tapaswini2026/images
+
+
+# Step 4: Verify Upload
+aws s3 ls s3://cafe-tapaswini2026/images/ --human-readable --summarize
+
+
+# Step 5: Create Event Notification JSON File
+vi s3EventNotification.json
+
+
+# Paste below content inside file (replace ARN):
+
+# {
+#   "TopicConfigurations": [
+#     {
+#       "TopicArn": "arn:aws:sns:us-west-2:484213268546:s3NotificationTopic",
+#       "Events": ["s3:ObjectCreated:*","s3:ObjectRemoved:*"],
+#       "Filter": {
+#         "Key": {
+#           "FilterRules": [
+#             {
+#               "Name": "prefix",
+#               "Value": "images/"
+#             }
+#           ]
+#         }
+#       }
+#     }
+#   ]
+# }
+
+
+# Save file:
+# ESC → :wq
+
+
+# Step 6: Attach Notification Configuration
+aws s3api put-bucket-notification-configuration \
+--bucket cafe-tapaswini2026 \
+--notification-configuration file://s3EventNotification.json
+
+
+# Step 7: Check Notification Config (Optional)
+aws s3api get-bucket-notification-configuration \
+--bucket cafe-tapaswini2026
+
+
+# Step 8: Upload New Image (Trigger Email)
+aws s3api put-object \
+--bucket cafe-tapaswini2026 \
+--key images/Caramel-Delight.jpg \
+--body ~/new-images/Caramel-Delight.jpg
+
+
+# Step 9: Download Image (No Email Trigger)
+aws s3api get-object \
+--bucket cafe-tapaswini2026 \
+--key images/Donuts.jpg \
+Donuts.jpg
+
+
+# Step 10: Delete Image (Trigger Email)
+aws s3api delete-object \
+--bucket cafe-tapaswini2026 \
+--key images/Strawberry-Tarts.jpg
+
+
+# Step 11: Unauthorized Action Test (Should Fail)
+aws s3api put-object-acl \
+--bucket cafe-tapaswini2026 \
+--key images/Donuts.jpg \
+--acl public-read
+
+
+# ==============================
+# END OF COMMANDS
+# ==============================

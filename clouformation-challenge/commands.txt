@@ -1,0 +1,68 @@
+AWS re/Start Challenge Lab
+Using AWS CloudFormation to Create a VPC and EC2 Instance
+
+Commands Used During the Lab
+
+-------------------------------------------------
+
+1. Verify AWS CLI Access
+
+aws sts get-caller-identity
+
+This command confirms that the AWS CLI is authenticated and displays the account ID.
+
+-------------------------------------------------
+
+2. List EC2 Instances
+
+aws ec2 describe-instances
+
+Displays instance details including instance ID, type, and status.
+
+-------------------------------------------------
+
+3. List VPCs
+
+aws ec2 describe-vpcs
+
+Shows VPC information including CIDR block and VPC ID.
+
+-------------------------------------------------
+
+4. List Subnets
+
+aws ec2 describe-subnets
+
+Displays subnet IDs, CIDR blocks, and availability zones.
+
+-------------------------------------------------
+
+5. List Internet Gateways
+
+aws ec2 describe-internet-gateways
+
+Shows internet gateways attached to VPCs.
+
+-------------------------------------------------
+
+6. List Security Groups
+
+aws ec2 describe-security-groups
+
+Displays inbound and outbound rules configured for security groups.
+
+-------------------------------------------------
+
+7. List CloudFormation Stacks
+
+aws cloudformation list-stacks
+
+Shows the status of stacks such as CREATE_IN_PROGRESS or CREATE_COMPLETE.
+
+-------------------------------------------------
+
+8. Describe Stack Resources
+
+aws cloudformation describe-stack-resources --stack-name restart-vpc-ec2
+
+Lists all resources created by the CloudFormation stack.
